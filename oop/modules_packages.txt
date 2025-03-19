@@ -1,0 +1,34 @@
+В Python модули этопросто файл
+название файла соответствует названию модуля
+
+Файлы могут находиться в папках, как и модули. Пакет — это набор модулей в папке. Имя пакета — это имя папки. Нужно сообщить Python, что папка — это пакет, чтобы отличить ее от других папок в каталоге. Для этого помещают (обычно пустой) файл в папку с именем __init__.py.
+__init__.py может содержать любые объявления переменных или классов, которые нам нравятся, и они будут доступны как часть пакета.
+
+import database
+db = database.Database("path/to/data")
+
+from database import Database
+db = Database("path/to/data")
+
+from database import Database as DB
+db = DB("path/to/data")
+
+from database import Database, Query
+
+from database import *
+возможно но не желательно 
+
+Абсолютный импорт указывает полный путь к модулю, функции или классу
+
+import ecommerce.products
+product = ecommerce.products.Product("name1")
+
+from ecommerce.products import Product
+product = Product("name2")
+
+Относительный импорт
+Относительные импорты идентифицируют класс, функцию или модуль, как они расположены относительно текущего модуля. Они имеют смысл только внутри файлов модулей, и, кроме того, они имеют смысл только там, где есть сложная структура пакета.
+
+from .database import Database
+from ..database import Database
+from ..contact.email import send_mail
