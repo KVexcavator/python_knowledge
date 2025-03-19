@@ -1,4 +1,6 @@
 import asyncio
+import sys
+sys.path.append('..')
 from util import delay
 
 async def main():

@@ -1,5 +1,7 @@
 import asyncio
 from asyncio import TimeoutError
+import sys
+sys.path.append('..')
 from util import delay
 
 async def main():
