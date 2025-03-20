@@ -1,0 +1,53 @@
+__repr__ магический метод в Python, который отвечает за строковое представление объекта.  
+
+Этот метод должен возвращать строку, которая однозначно описывает объект. объекта.  
+
+#### ✅ Пример базового использования:
+```python
+class Cat:
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+
+    def __repr__(self) -> str:
+        return f"Cat(name={self.name!r}, age={self.age})"
+
+cat = Cat("Барсик", 3)
+print(cat)        # Выведет: Cat(name='Барсик', age=3)
+print(repr(cat))  # Выведет: Cat(name='Барсик', age=3)
+```
+Разница между __repr__ и __str__
+- __repr__  предназначен для разработчиков, должен быть максимально информативным.  
+- __str__  предназначен для пользователей, должен быть читаемым.
+
+```python
+class Dog:
+    def __init__(self, name: str):
+        self.name = name
+
+    def __repr__(self) -> str:
+        return f"Dog(name={self.name!r})"
+
+    def __str__(self) -> str:
+        return f"Собака по имени {self.name}"
+
+dog = Dog("Шарик")
+print(dog)        # Собака по имени Шарик
+print(repr(dog))  # Dog(name='Шарик')
+```
+Если __str__ не определён, Python использует __repr__.
+
+Советы по __repr__
+ Должен возвращать строку, которая позволяет воссоздать объект (по возможности).  
+ Используй !r для корректного представления строк и других данных.  
+ Если объект сложный, можно вернуть `<ClassName ...>` вместо кода.  
+
+Пример сложного объекта:
+```python
+class DatabaseConnection:
+    def __repr__(self) -> str:
+        return "<DatabaseConnection active=True>"
+
+db = DatabaseConnection()
+print(db)  # <DatabaseConnection active=True>
+```
