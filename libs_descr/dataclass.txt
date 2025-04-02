@@ -1,0 +1,122 @@
+dataclasses в Python 
+dataclasses — это модуль в Python, который упрощает создание классов для хранения данных.  
+Он появился в Python 3.7 и заменяет обычные классы, когда тебе нужно просто хранить данные, а не писать кучу кода.
+
+Обычный класс (много кода) 
+```python
+class Car:
+    def __init__(self, brand, year):
+        self.brand = brand
+        self.year = year
+
+    def __repr__(self):
+        return f"Car(brand={self.brand}, year={self.year})"
+
+car = Car("Tesla", 2022)
+print(car)  # Car(brand=Tesla, year=2022)
+```
+Класс с dataclass (минимум кода, тот же результат!)
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Car:
+    brand: str
+    year: int
+
+car = Car("Tesla", 2022)
+print(car)  # Car(brand='Tesla', year=2022)
+```
+dataclass сам создает __init__, __repr__, __eq__ и другие методы!
+
+Дополнительные фишки dataclasses
+Значения по умолчанию
+```python
+@dataclass
+class User:
+    name: str
+    age: int = 18  # Значение по умолчанию
+
+user = User("Alice")
+print(user)  # User(name='Alice', age=18)
+```
+field() — контроль значений
+Запретить изменение (аналог const)  
+```python
+from dataclasses import field
+
+@dataclass
+class Config:
+    app_name: str
+    version: str = field(default="1.0", init=False)  # Нельзя передавать при создании
+
+config = Config("MyApp")
+print(config)  # Config(app_name='MyApp', version='1.0')
+
+config.version = "2.0"  # Ошибка! Значение задается при создании
+```
+Игнорировать поле (не включать в __repr__ и __eq__)
+```python
+@dataclass
+class Secret:
+    username: str
+    password: str = field(repr=False)  # Пароль не показывается
+
+secret = Secret("admin", "12345")
+print(secret)  # Secret(username='admin')
+```
+dataclass с __post_init__
+Если нужно автоматически что-то изменить после создания объекта:
+```python
+@dataclass
+class Product:
+    name: str
+    price: float
+
+    def __post_init__(self):
+        self.price = round(self.price, 2)  # Округляем цену
+
+p = Product("Laptop", 1234.5678)
+print(p)  # Product(name='Laptop', price=1234.57)
+```
+Наследование dataclasses
+```python
+@dataclass
+class Animal:
+    name: str
+
+@dataclass
+class Dog(Animal):
+    breed: str
+
+dog = Dog("Buddy", "Labrador")
+print(dog)  # Dog(name='Buddy', breed='Labrador')
+```
+
+---
+
+## 🔹 **Полезные параметры `@dataclass`**
+- `@dataclass(frozen=True)` — делает класс **неизменяемым** (аналог `tuple`).
+- `@dataclass(order=True)` — добавляет операторы `<`, `>`, `<=`, `>=` (сортировка).
+- `@dataclass(init=False)` — отключает автоматическое создание `__init__`.
+
+🔹 **Пример `frozen=True` (нельзя менять данные)**
+```python
+@dataclass(frozen=True)
+class Point:
+    x: int
+    y: int
+
+p = Point(1, 2)
+p.x = 3  # Ошибка! Нельзя изменить объект
+```
+
+---
+
+## 🎯 **Вывод**
+- **`dataclasses` экономят время** и убирают шаблонный код.
+- **Автоматически создают** `__init__`, `__repr__`, `__eq__`, и другие методы.
+- Можно **задавать значения по умолчанию**, запрещать редактирование и использовать `field()`.
+- Поддерживают **наследование** и `__post_init__` для доп. логики.
+
+🔥 Используй `dataclasses`, когда нужно **простое хранилище данных** без лишнего кода! 🚀

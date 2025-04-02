@@ -1,0 +1,59 @@
+python3 -m venv my_venv
+source my_venv/bin/activate
+Создать виртуальную среду в своём домашнем каталоге
+python3 -m venv ~/ptst
+для активации в терминале
+source ~/ptst/bin/activate
+deactivate
+-------------------------
+pip install pytest
+-------------------------
+pytest test_one.py
+more info
+pytest -v test_two.py
+all within folder
+pytest --tb=no
+specifying in dir
+pytest --tb=no test_one.pu test_two.py
+specifying folder
+pytest --tb=no my_folders
+specify a test function within a test file
+pytest -v my_folder/test_one::test_passing
+-------------------------
+don’t need to see the full traceback
+--tb=short 
+-------------------------
+• Test files should be named test_<something>.py or <something>_test.py.
+• Test methods and functions should be named test_<something>.
+• Test classes should be named Test<Something>.
+---------------------------
+Test Outcomes
+• PASSED (.)—The test ran successfully.
+• FAILED (F)—The test did not run successfully.
+• SKIPPED (s)—The test was skipped.
+• XFAIL (x)—The test was not supposed to pass, and it ran and failed.
+• XPASS (X)—The test was marked with xfail, but it ran and passed.
+• ERROR (E)—An exception happened either during the execution of a fixture or hook function, and not during the execution of a test function.
+===============================
+Running a Subset of Tests
+-------------------------------
+Single test method - pytest path/test_module.py::TestClass::test_method
+-------------------------------
+All tests in a class- pytest path/test_module.py::TestClass
+-------------------------------
+Single test function - pytest path/test_module.py::test_function
+-------------------------------
+All tests in a module- pytest path/test_module.py
+--------------------------------
+All tests in a directory - pytest path
+---------------------------------
+Tests matching a name pattern - pytest -k pattern
+например исползуем название класса
+pytest -v -k TestEquality
+или часть названия
+pytest -v -k TestEq
+или все которые содержат “equality” в названии
+pytest -v --tb=no -k equality
+--------------------------------
+Tests by marker
+=================================

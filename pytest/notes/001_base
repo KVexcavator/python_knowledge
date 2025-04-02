@@ -1,0 +1,18 @@
+python3 -m venv ~/ptst
+source ~/ptst/bin/activat
+pip install pytest
+pip install ./cards_proj/
+------------------------------------
+Запустите карты и немного поиграйте с ними:
+```bash
+cards add do something --owner Brian
+cards add do something else
+cards
+cards update 2 --owner Brian
+cards
+cards start 1
+cards finish 1
+cards start 2
+cards
+cards delete 1
+----------------------------------------

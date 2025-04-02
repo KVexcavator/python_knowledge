@@ -1,0 +1,12 @@
+Виртуальная среда Python
+https://docs.python.org/3/library/venv.html
+Используя модуль Python venv для создания изолированных сред Python, вы можете использовать разные версии пакетов для разных проектов. Еще одним преимуществом использования venv является то, что вам не понадобятся никакие административные привилегии для установки пакетов Python.
+python3 -m venv my_env
+своём домашнем каталоге
+python3.12 -m venv ~/django5_env
+to activate
+source my_env/bin/activate
+в домашнем каталоге
+source ~/django5_env/bin/activate
+shell prompt  должна выглядуть при включении так
+(my_env) zenx@pc:~ zenx$
