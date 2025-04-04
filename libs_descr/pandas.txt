@@ -1,0 +1,60 @@
+pandas — это библиотека для анализа и обработки данных, которая предоставляет удобные структуры данных и инструменты для работы с таблицами, временными рядами и CSV/Excel-файлами.
+
+ Основные структуры данных в pandas
+1. Series – одномерный массив с индексами (как массив, но с метками).
+2. DataFrame – двумерная таблица (как таблица в Excel или SQL).
+
+Как установить `pandas`?
+```bash
+pip install pandas
+```
+Основные возможности
+
+1. Создание DataFrame
+```python
+import pandas as pd
+
+data = {"Имя": ["Алиса", "Боб", "Чарли"], "Возраст": [25, 30, 35]}
+df = pd.DataFrame(data)
+
+print(df)
+```
+Вывод:
+```
+      Имя  Возраст
+0  Алиса      25
+1    Боб      30
+2 Чарли      35
+```
+
+2. Чтение данных из файла
+```python
+df = pd.read_csv("data.csv")  # CSV
+df = pd.read_excel("data.xlsx")  # Excel
+df = pd.read_sql("SELECT * FROM users", connection)  # SQL
+```
+
+3. Фильтрация данных
+```python
+df_filtered = df[df["Возраст"] > 30]
+print(df_filtered)
+```
+
+4. Группировка и агрегация
+```python
+df.groupby("Имя")["Возраст"].mean()
+```
+
+5. Изменение данных
+```python
+df["Возраст"] = df["Возраст"] + 1  # Увеличить возраст на 1 год
+df["Полное имя"] = df["Имя"] + " Иванов"  # Добавить фамилию
+```
+
+6. Визуализация с matplotlib
+```python
+import matplotlib.pyplot as plt
+
+df["Возраст"].plot(kind="bar")
+plt.show()
+```
