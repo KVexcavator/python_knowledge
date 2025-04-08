@@ -4,4 +4,8 @@ __pycache__/
 .vscode
 .pytest_cache
 .env
+used_letels/
+pr_leters/
+variors/
+scripts/mailing/*.pdf
 

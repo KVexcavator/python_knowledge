@@ -28,13 +28,13 @@ body = """\
 """
 
 # Загрузка email-адресов из JSON
-with open("emails_trade1.json", "r", encoding="utf-8") as f:
+with open("bomber.json", "r", encoding="utf-8") as f:
     recipients = json.load(f)
 
 # Загрузка резюме один раз
 with open("Software_Fullstack_Engineer_ru.pdf", "rb") as f:
     resume_data = f.read()
-    resume_filename = "Vyacheslav_developer_resume.pdf"
+    resume_filename = "soft_developer_resume.pdf"
 
 # Установка защищённого соединения
 context = ssl.create_default_context()
