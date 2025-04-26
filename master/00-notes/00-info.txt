@@ -1,0 +1,8 @@
+doctest page:
+https://docs.python.org/3/library/doctest.html
+exaples:
+https://github.com/fluentpython/example-code-2e
+---------------------------------
+TODO как это работает? для выполнения всех тестов в проекте
+python3 -m doctest example_script.py
+---------------------------------

@@ -31,4 +31,4 @@ def test_2():
   """Simulate slightly longer test."""
   time.sleep(1.23)
 
-  # pytest -v -s test_autouse.py
+# pytest -v -s test_autouse.py
